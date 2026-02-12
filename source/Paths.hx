@@ -16,7 +16,7 @@ class Paths
 		currentLevel = name.toLowerCase();
 	}
 
-	static function getPath(file:String, type:AssetType, library:Null<String>)
+	public static function getPath(file:String, type:AssetType, library:Null<String>)
 	{
 		if (library != null)
 			return getLibraryPath(file, library);
@@ -68,6 +68,10 @@ class Paths
 	inline static public function txt(key:String, ?library:String)
 	{
 		return getPath('data/$key.txt', TEXT, library);
+	}
+	
+	inline static public function formatToSongPath(path:String) {
+		return path.toLowerCase().replace(' ', '-');
 	}
 
 	inline static public function xml(key:String, ?library:String)
