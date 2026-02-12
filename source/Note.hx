@@ -108,7 +108,7 @@ class Note extends FlxSprite
 					
 					switch(noteFuck)
 					{
-						case 'Hurt Note':
+						case 2:
 						{
 							frames = Paths.getSparrowAtlas('HURTNOTE_assets');
 							animation.addByPrefix('greenScroll', 'green0');

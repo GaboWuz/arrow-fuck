@@ -2568,7 +2568,7 @@ class PlayState extends MusicBeatState
 								notes.remove(daNote, true);
 							}
 							else
-							if (daNote.noteFuck == 'Hurt Note')
+							if (daNote.noteFuck == 2)
 								{
 									// remove(dad);
 								}
