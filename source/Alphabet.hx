@@ -22,6 +22,13 @@ class Alphabet extends FlxSpriteGroup
 	// for menu shit
 	public var targetY:Float = 0;
 	public var isMenuItem:Bool = false;
+	
+	// for menu shit 2
+	public var forceX:Float = Math.NEGATIVE_INFINITY;
+	public var yMult:Float = 120;
+	public var xAdd:Float = 0;
+	public var yAdd:Float = 0;
+	public var textSize:Float = 1.0;
 
 	public var text:String = "";
 
@@ -229,10 +236,14 @@ class Alphabet extends FlxSpriteGroup
 	{
 		if (isMenuItem)
 		{
+			screenCenter(X);
 			var scaledY = FlxMath.remapToRange(targetY, 0, 1, 0, 1.3);
 
-			y = FlxMath.lerp(y, (scaledY * 120) + (FlxG.height * 0.48), 0.30);
-			x = FlxMath.lerp(x, (targetY * 20) + 90, 0.30);
+			var lerpVal:Float = CoolUtil.boundTo(elapsed * 9.6, 0, 1);
+			y = FlxMath.lerp(y, (scaledY * yMult) + (FlxG.height * 0.48) + yAdd, lerpVal);
+			if(forceX != Math.NEGATIVE_INFINITY) {
+				x = forceX;
+			}
 		}
 
 		super.update(elapsed);
