@@ -85,13 +85,12 @@ class FreeplayState extends MusicBeatState
 		bg.antialiasing = FlxG.save.data.antialiasing;
 		add(bg);
 		
-		chess = new FlxBackdrop(Paths.image('mebg'), 0, 0, X);
+		chess = new FlxBackdrop(Paths.image('mebg'), X, 0, 0);
 		chess.y -= 80;
-		add(chess);
-		
 		chess.offset.x -= 0;
 		chess.offset.y += 0;
 		chess.velocity.x = 20;
+		add(chess);
 		
 		gradient = new FlxSprite().loadGraphic(Paths.image('fpbgradient'));
 		gradient.antialiasing = FlxG.save.data.antialiasing;
