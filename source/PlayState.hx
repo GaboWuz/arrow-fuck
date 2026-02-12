@@ -2560,6 +2560,14 @@ class PlayState extends MusicBeatState
 					// WIP interpolation shit? Need to fix the pause issue
 					// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
 	
+					if ((daNote.mustPress && daNote.tooLate && !FlxG.save.data.downscroll || daNote.mustPress && daNote.tooLate && FlxG.save.data.downscroll) && daNote.mustPress)
+					{
+							if (daNote.isSustainNote && daNote.wasGoodHit)
+							{
+								daNote.kill();
+								notes.remove(daNote, true);
+							}
+							else
 							if (daNote.noteFuck == 'Hurt Note')
 								{
 									// remove(dad);
@@ -2570,13 +2578,6 @@ class PlayState extends MusicBeatState
 									vocals.volume = 0;
 									if (theFunne)
 										noteMiss(daNote.noteData, daNote);
-								}
-							else
-							{
-								health -= 0.075;
-								vocals.volume = 0;
-								if (theFunne)
-									noteMiss(daNote.noteData, daNote);
 							}
 		
 							daNote.visible = false;
@@ -2768,7 +2769,7 @@ class PlayState extends MusicBeatState
 			switch(daRating)
 			{
 					case 'shit':
-						if (daNote.noteFuck == 'Hurt Note')
+						if (daNote.noteFuck == 2)
 							{
 								health -= 0.25;
 							}
@@ -2784,7 +2785,7 @@ class PlayState extends MusicBeatState
 									totalNotesHit += 0.25;
 							}
 					case 'bad':
-						if (daNote.noteFuck == 'Hurt Note')
+						if (daNote.noteFuck == 2)
 							{
 								health -= 0.25;
 							}
@@ -2799,7 +2800,7 @@ class PlayState extends MusicBeatState
 									totalNotesHit += 0.50;
 							}
 					case 'good':
-						if (daNote.noteFuck == 'Hurt Note')
+						if (daNote.noteFuck == 2)
 							{
 								health -= 0.25;
 							}
@@ -2815,7 +2816,7 @@ class PlayState extends MusicBeatState
 									totalNotesHit += 0.75;
 							}
 					case 'sick':
-						if (daNote.noteFuck == 'Hurt Note')
+						if (daNote.noteFuck == 2)
 							{
 								health -= 0.25;
 							}
