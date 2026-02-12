@@ -1,0 +1,12 @@
+Tutorial:gf:1
+Reboop:dad:1
+Fresher:dad:1
+Rap-king:dad:1
+Bittersweet:spooky:2
+Nightfall:spooky:2
+Virus:monster:2
+Shacklesz:pico:3
+Blam:pico:3
+Loaded:pico:3
+-debug:bf-pixel:4
+Earthquake:sarsa:5
