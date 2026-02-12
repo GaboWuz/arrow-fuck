@@ -326,12 +326,14 @@ class FreeplayState extends MusicBeatState
 		{
 			item.targetY = bullShit - curSelected;
 			bullShit++;
+			item.scale.set(1, 0.9);
 
 			item.alpha = 0.6;
 			// item.setGraphicSize(Std.int(item.width * 0.8));
 
 			if (item.targetY == 0)
 			{
+				item.scale.set(1.0, 1.05);
 				item.alpha = 1;
 				// item.setGraphicSize(Std.int(item.width));
 			}
