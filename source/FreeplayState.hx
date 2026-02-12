@@ -82,10 +82,10 @@ class FreeplayState extends MusicBeatState
 
 		bg = new FlxSprite().loadGraphic(Paths.image('menuBG'));
 		bg.x -= 10;
-		bg.antialiasing = ClientPrefs.globalAntialiasing;
+		bg.antialiasing = FlxG.save.data.antialiasing;
 		add(bg);
 		
-		chess = new FlxBackdrop(Paths.image('mebg'), 0, 0, true, false);
+		chess = new FlxBackdrop(Paths.image('mebg'), 0, 0, RepeatX: true, RepeatY: false);
 		chess.y -= 80;
 		add(chess);
 		
@@ -94,7 +94,7 @@ class FreeplayState extends MusicBeatState
 		chess.velocity.x = 20;
 		
 		gradient = new FlxSprite().loadGraphic(Paths.image('fpbgradient'));
-		gradient.antialiasing = ClientPrefs.globalAntialiasing;
+		gradient.antialiasing = FlxG.save.data.antialiasing;
 		add(gradient);
 
 		menushit = new FlxSprite(0).loadGraphic(Paths.image('fpshit'));
@@ -102,13 +102,13 @@ class FreeplayState extends MusicBeatState
 		menushit.x -= 1200;
 		menushit.alpha = 0.9;
 		menushit.screenCenter(Y);
-		menushit.antialiasing = ClientPrefs.globalAntialiasing;
+		menushit.antialiasing = FlxG.save.data.antialiasing;
 		add(menushit);
 
 		FlxTween.tween(menushit, {x:-25}, 2.4, {ease: FlxEase.expoOut});
 		
 		overlay = new FlxSprite().loadGraphic(Paths.image('fpov3'));
-		overlay.antialiasing = ClientPrefs.globalAntialiasing;
+		overlay.antialiasing = FlxG.save.data.antialiasing;
 		add(overlay);
 		overlay.x += 1200;
 		FlxTween.tween(overlay, {x:0}, 2.4, {ease: FlxEase.expoOut});
