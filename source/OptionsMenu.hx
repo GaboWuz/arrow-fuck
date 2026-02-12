@@ -53,7 +53,8 @@ class OptionsMenu extends MusicBeatState
 		]),
 		
 		new OptionCategory("Psych Engine Goofy", [
-			new AntialiasingOption("antialiasing bruh")
+			new AntialiasingOption("antialiasing bruh"),
+			new MiddleOption("hell yeah")
 		]),
 		
 	];

@@ -1016,12 +1016,18 @@ class PlayState extends MusicBeatState
 		
 		if (FlxG.save.data.downscroll)
 			strumLine.y = FlxG.height - 165;
+		
+		if (FlxG.save.data.middle)
+			strumLine.x = -278;
 
 		strumLineNotes = new FlxTypedGroup<FlxSprite>();
 		add(strumLineNotes);
 
 		playerStrums = new FlxTypedGroup<FlxSprite>();
 		cpuStrums = new FlxTypedGroup<FlxSprite>();
+		
+		if (FlxG.save.data.middle)
+			cpuStrums.visible = false;
 
 		// startCountdown();
 

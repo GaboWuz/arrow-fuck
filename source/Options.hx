@@ -161,6 +161,27 @@ class AntialiasingOption extends Option
 	}
 }
 
+class MiddleOption extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.middle = !FlxG.save.data.middle;
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return FlxG.save.data.middle ? "Middlescroll True" : "Middlescroll False";
+	}
+}
+
 class FuckboxOption extends Option
 {
 	public function new(desc:String)
