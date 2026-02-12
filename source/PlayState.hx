@@ -151,7 +151,8 @@ class PlayState extends MusicBeatState
 	private var ss:Bool = false;
 
 
-	private var healthBarBG:FlxSprite;
+	private var healthBarBG:AttachedSprite;
+	private var healthBarOV:AttachedSprite;.
 	private var healthBar:FlxBar;
 	private var songPositionBar:Float = 0;
 	
@@ -200,6 +201,27 @@ class PlayState extends MusicBeatState
 	var floorcolor:Int = 1;
 	var spookersvel:Int = 2;
 	var dancefvel:Int = 2;
+	
+	//COISINHAS DA FAVELA VAI BRASIL UOOOOHHHOOOOOOOOOOOOOO!!
+	//eis que a favela venceu fml tmj
+
+	private var gfmedo:Bool = false;
+	var kleistate:Int = 3;
+
+	var carrofoda:BGSprite;
+	var danielzinho:BGSprite;
+	var daniel:BGSprite;
+	var kleitin:BGSprite;
+	var busao:BGSprite;
+
+	//frente da tela
+	var acidscreen:FlxSprite;
+	var favelalight:FlxSprite;
+	var favelight:FlxSprite;
+	var poste:FlxSprite;
+	var pessoas:BGSprite;
+	var treefront:FlxSprite;
+	var florestalight:FlxSprite;
 
 	var halloweenBG:FlxSprite;
 	var isHalloween:Bool = false;
@@ -515,59 +537,285 @@ class PlayState extends MusicBeatState
 				dancef.screenCenter(XY);
 				add(dancef);
 				dancef.alpha = 0.001;
+				
+			case 'baladamedovirus': //Week 2
+				defaultCamZoom = 0.56;
+				
+				var bg:BGSprite = new BGSprite('stages/baladamedo/layer0', -0, 0, 0.9, 0.9);
+				bg.screenCenter(XY);
+				add(bg);
+
+				var front:BGSprite = new BGSprite('stages/baladamedo/layer1virus', 0, 0, 0.9, 0.9);
+				front.screenCenter(XY);
+				front.updateHitbox();
+				add(front);
+				
+				dancef = new BGSprite('stages/baladamedo/dancefloor_virus', 0, 0, 0.9, 0.9, ['floor0a']);
+				dancef.animation.addByPrefix('floor1', 'floor1a', 24, false);
+				dancef.animation.addByPrefix('floor2', 'floor2a', 24, false);
+				dancef.animation.addByPrefix('floor3', 'floor3a', 24, false);	
+				dancef.animation.addByPrefix('floor4', 'floor4a', 24, false);
+				dancef.animation.addByPrefix('floor5', 'floor5a', 24, false);
+				dancef.screenCenter(XY);
+				add(dancef);
+
+				spookers = new BGSprite('stages/baladamedo/spookers_virus', 0, 0, 0.9, 0.9, ['SPEAKERS_VIRUS']);
+				spookers.screenCenter(XY);
+				spookers.y += 125;
+				spookers.x += 6;
+				add(spookers);
+
+				barbaravirus = new BGSprite('stages/baladamedo/barbara', 0, 0, 0.9, 0.9, ['danceleft']);
+				barbaravirus.animation.addByPrefix('danceleft', 'danceleft', 24, false);
+				barbaravirus.animation.addByPrefix('danceright', 'danceright', 24, false);
+				add(barbaravirus);
+				barbaravirus.y -= 630;
+				barbaravirus.x -= 630;
+				
+				acidscreen = new BGSprite('stages/baladamedo/screen', 0, 0, 0.95, 0.95);
+				acidscreen.screenCenter(XY);
+				acidscreen.cameras = [camHUD];
+				
+			case 'favela': //Week 3 (só que no por do sol) //favelinha //fava //SLA
+				defaultCamZoom = 0.68;
+				
+				var sky:BGSprite = new BGSprite('stages/favela/layer0', 0, 0, 0.1, 0.1);
+				sky.screenCenter(XY);
+				add(sky);
+				
+				var roaded:BGSprite = new BGSprite('stages/favela/layer6', 0, 0, 0.2, 0.2);
+				roaded.screenCenter(XY);
+				roaded.setGraphicSize(Std.int(roaded.width * 0.85));
+				add(roaded);
+
+				var houseback:BGSprite = new BGSprite('stages/favela/layer52', 0, 0, 0.36, 0.36);
+				houseback.screenCenter(XY);
+				add(houseback);
+
+				var house:BGSprite = new BGSprite('stages/favela/layer5', 0, 0, 0.4, 0.4);
+				house.screenCenter(XY);
+				add(house);
+
+				var tree:BGSprite = new BGSprite('stages/favela/layer42', 0, 0, 0.420, 0.420);
+				tree.screenCenter(XY);
+				add(tree);
+				
+				var brickthing:BGSprite = new BGSprite('stages/favela/layer4', 0, 0, 0.65, 0.65);
+				brickthing.screenCenter(XY);
+				add(brickthing);
+
+				var thing:BGSprite = new BGSprite('stages/favela/layer3', 0, 0, 0.69, 0.69);
+				thing.screenCenter(XY);
+				add(thing);
+
+				danielzinho = new BGSprite('stages/favela/danielzinho', 500, 510, 0.7, 0.7, ['danielwalk']);
+				add(danielzinho);
+				
+				carrofoda = new BGSprite('stages/favela/carrofoda', 0, 600, 0.72, 0.72);
+				add(carrofoda);
+				
+				busao = new BGSprite('stages/favela/busao', 2300, -40, 0.7, 0.7, ['busao']);
+				add(busao);
+
+				var city:BGSprite = new BGSprite('stages/favela/layer2', 0, 0, 0.85, 0.85);
+				city.screenCenter(XY);
+				add(city);
+
+				var street:BGSprite = new BGSprite('stages/favela/layer1', 0, 0, 0.9, 0.9);
+				street.screenCenter(XY);
+				add(street);
+				
+				daniel = new BGSprite('stages/favela/daniel', -540, 260, 0.92, 0.91, ['danieldance']);
+				//daniel.screenCenter(XY);
+				daniel.x = -2000;
+				//kleito
+				kleitin = new BGSprite('stages/favela/kleitin', 2500, 255, 0.9, 0.9, ['kleiwalk']);
+				//2500, 240
+				kleitin.animation.addByPrefix('walk', 'kleiwalk', 24, true);
+				kleitin.animation.addByPrefix('stop', 'kleistop', 24, false);
+				kleitin.animation.addByPrefix('idle', 'kleidance', 24, false);
+				kleitin.animation.addByPrefix('susto', 'kleisusto', 24, false);
+				kleitin.animation.addByPrefix('dance', 'kleitin', 24, false);
+				kleitin.animation.addByPrefix('bala', 'kleitiro', 24, false);
+				
+				favelalight = new BGSprite('stages/favela/layer7', 0, 0, 0.1, 0.1);
+				favelalight.screenCenter(XY);
+
+				favelight = new BGSprite('stages/favela/layer7', 0, 0, 0.8, 0.8);
+				favelight.screenCenter(XY);
+				
+			case 'faveladia': //Week 3
+				defaultCamZoom = 0.76;
+				
+				var sky:BGSprite = new BGSprite('stages/faveladia/layer0', 0, 0, 0.1, 0.1);
+				sky.screenCenter(XY);
+				add(sky);
+				
+				var roaded:BGSprite = new BGSprite('stages/faveladia/layer6', 0, 0, 0.2, 0.2);
+				roaded.screenCenter(XY);
+				roaded.setGraphicSize(Std.int(roaded.width * 0.85));
+				add(roaded);
+
+				var houseback:BGSprite = new BGSprite('stages/faveladia/layer52', 0, 0, 0.36, 0.36);
+				houseback.screenCenter(XY);
+				add(houseback);
+
+				var house:BGSprite = new BGSprite('stages/faveladia/layer5', 0, 0, 0.4, 0.4);
+				house.screenCenter(XY);
+				add(house);
+
+				var tree:BGSprite = new BGSprite('stages/faveladia/layer42', 0, 0, 0.420, 0.420);
+				tree.screenCenter(XY);
+				add(tree);
+				
+				var brickthing:BGSprite = new BGSprite('stages/faveladia/layer4', 0, 0, 0.65, 0.65);
+				brickthing.screenCenter(XY);
+				add(brickthing);
+
+				var thing:BGSprite = new BGSprite('stages/faveladia/layer3', 0, 0, 0.69, 0.69);
+				thing.screenCenter(XY);
+				add(thing);
+
+				phillyTrain = new BGSprite('stages/faveladia/busao', 2000, 560);
+				//phillyTrain.scale.set(1.8, 1.8);
+				add(phillyTrain);
+
+				var city:BGSprite = new BGSprite('stages/faveladia/layer2', 0, 0, 0.85, 0.85);
+				city.screenCenter(XY);
+				add(city);
+
+				var street:BGSprite = new BGSprite('stages/faveladia/layer1', 0, 0, 0.9, 0.9);
+				street.screenCenter(XY);
+				add(street);
+
+				favelalight = new BGSprite('stages/faveladia/layer7', 0, 0, 0.1, 0.1);
+				favelalight.screenCenter(XY);
+
+			case 'favelanoite': //Week 3 (só que de noite ué)
+				defaultCamZoom = 0.75;
+				gfmedo = true;
+			
+				var sky:BGSprite = new BGSprite('stages/favelanoite/layer0', 0, 0, 0.1, 0.1);
+				sky.screenCenter(XY);
+				add(sky);
+				
+				var roaded:BGSprite = new BGSprite('stages/favelanoite/layer6', 0, 0, 0.2, 0.2);
+				roaded.screenCenter(XY);
+				roaded.setGraphicSize(Std.int(roaded.width * 0.85));
+				add(roaded);
+
+				var houseback:BGSprite = new BGSprite('stages/favelanoite/layer52', 0, 0, 0.36, 0.36);
+				houseback.screenCenter(XY);
+				add(houseback);
+
+				var house:BGSprite = new BGSprite('stages/favelanoite/layer5', 0, 0, 0.4, 0.4);
+				house.screenCenter(XY);
+				add(house);
+
+				var tree:BGSprite = new BGSprite('stages/favelanoite/layer42', 0, 0, 0.420, 0.420);
+				tree.screenCenter(XY);
+				add(tree);
+				
+				var brickthing:BGSprite = new BGSprite('stages/favelanoite/layer4', 0, 0, 0.65, 0.65);
+				brickthing.screenCenter(XY);
+				add(brickthing);
+
+				var thing:BGSprite = new BGSprite('stages/favelanoite/layer3', 0, 0, 0.69, 0.69);
+				thing.screenCenter(XY);
+				add(thing);
+
+				carrofoda = new BGSprite('stages/favelanoite/carrofoda', -600, 600, 0.72, 0.72);
+				add(carrofoda);
+
+				busao = new BGSprite('stages/favelanoite/busao', 230, -40, 0.7, 0.7, ['busao']);
+				add(busao);
+
+				var city:BGSprite = new BGSprite('stages/favelanoite/layer2', 0, 0, 0.85, 0.85);
+				city.screenCenter(XY);
+				add(city);
+
+				var street:BGSprite = new BGSprite('stages/favelanoite/layer1', 0, 0, 0.9, 0.9);
+				street.screenCenter(XY);
+				add(street);
+				
+				daniel = new BGSprite('stages/favelanoite/daniel', -540, 260, 0.92, 0.91, ['danieldance']);
+				//daniel.screenCenter(XY);
+				
+				//kleito
+				kleitin = new BGSprite('stages/favelanoite/kleitin', 1080, 255, 0.9, 0.9, ['kleiwalk']);
+				kleitin.animation.addByPrefix('walk', 'kleiwalk', 24, true);
+				kleitin.animation.addByPrefix('stop', 'kleistop', 24, false);
+				kleitin.animation.addByPrefix('idle', 'kleidance', 24, false);
+				kleitin.animation.addByPrefix('susto', 'kleisusto', 24, false);
+				kleitin.animation.addByPrefix('dance', 'kleitin', 24, false);
+				kleitin.animation.addByPrefix('bala', 'kleitiro', 24, false);
+
+				favelalight = new BGSprite('stages/favelanoite/layer7', 0, 0, 0.1, 0.1);
+				favelalight.screenCenter(XY);
+
+			case 'floresta': //Salsicha
+				defaultCamZoom = 0.48;
+
+				var sky:BGSprite = new BGSprite('stages/floresta/layer0', 0, 0, 0.1, 0.1);
+				sky.screenCenter(XY);
+				add(sky);
+				
+				var tree:BGSprite = new BGSprite('stages/floresta/layer1', 0, 0, 0.2, 0.2);
+				tree.screenCenter(XY);
+				add(tree);
+
+				var tree:BGSprite = new BGSprite('stages/floresta/layer2', 0, 0, 0.46, 0.46);
+				tree.screenCenter(XY);
+				add(tree);
+
+				var tree:BGSprite = new BGSprite('stages/floresta/layer3', 0, 0, 0.55, 0.55);
+				tree.screenCenter(XY);
+				add(tree);
+
+				var tree:BGSprite = new BGSprite('stages/floresta/layer4', 0, 0, 0.66, 0.66);
+				tree.screenCenter(XY);
+				add(tree);
+
+				var pedras:BGSprite = new BGSprite('stages/floresta/layer5', 0, 0, 0.85, 0.85);
+				pedras.screenCenter(XY);
+				add(pedras);
+
+				var van:BGSprite = new BGSprite('stages/floresta/layer6', 0, 0, 0.9, 0.9);
+				van.screenCenter(XY);
+				add(van);
+
+				treefront = new BGSprite('stages/floresta/layer7', 0, 0, 0.95, 0.95);
+				treefront.screenCenter(XY);
+
+				florestalight = new BGSprite('stages/floresta/layer8', 0, 0, 0.1, 0.1);
+				florestalight.screenCenter(XY);
 
 			case 'stage':
 			{
-					defaultCamZoom = 0.9;
-					
-					var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback'));
-					bg.antialiasing = true;
-					bg.scrollFactor.set(0.9, 0.9);
-					bg.active = false;
-					add(bg);
+				defaultCamZoom = 0.9;
+				
+				var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback'));
+				bg.antialiasing = true;
+				bg.scrollFactor.set(0.9, 0.9);
+				bg.active = false;
+				add(bg);
 
-					var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('stagefront'));
-					stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
-					stageFront.updateHitbox();
-					stageFront.antialiasing = true;
-					stageFront.scrollFactor.set(0.9, 0.9);
-					stageFront.active = false;
-					add(stageFront);
+				var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('stagefront'));
+				stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+				stageFront.updateHitbox();
+				stageFront.antialiasing = true;
+				stageFront.scrollFactor.set(0.9, 0.9);
+				stageFront.active = false;
+				add(stageFront);
 
-					var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('stagecurtains'));
-					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
-					stageCurtains.updateHitbox();
-					stageCurtains.antialiasing = true;
-					stageCurtains.scrollFactor.set(1.3, 1.3);
-					stageCurtains.active = false;
+				var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('stagecurtains'));
+				stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
+				stageCurtains.updateHitbox();
+				stageCurtains.antialiasing = true;
+				stageCurtains.scrollFactor.set(1.3, 1.3);
+				stageCurtains.active = false;
 
-					add(stageCurtains);
-			}
-			default:
-			{
-					defaultCamZoom = 0.9;
-					var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback'));
-					bg.antialiasing = true;
-					bg.scrollFactor.set(0.9, 0.9);
-					bg.active = false;
-					add(bg);
-
-					var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('stagefront'));
-					stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
-					stageFront.updateHitbox();
-					stageFront.antialiasing = true;
-					stageFront.scrollFactor.set(0.9, 0.9);
-					stageFront.active = false;
-					add(stageFront);
-
-					var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('stagecurtains'));
-					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
-					stageCurtains.updateHitbox();
-					stageCurtains.antialiasing = true;
-					stageCurtains.scrollFactor.set(1.3, 1.3);
-					stageCurtains.active = false;
-
-					add(stageCurtains);
+				add(stageCurtains);
 			}
 		}
 		// var gfVersion:String = 'gf';
@@ -629,19 +877,116 @@ class PlayState extends MusicBeatState
 				gfGroup.scrollFactor.set(0.9, 0.9);
 				boyfriendGroup.scrollFactor.set(0.9, 0.9);
 				dadGroup.scrollFactor.set(0.9, 0.9);
+				
+			case 'baladamedovirus':
+				boyfriendGroup.y -= 60;
+				boyfriendGroup.x += 35;
+				dadGroup.y -= 22;
+				dadGroup.x -= 180;
+				gfGroup.x -= 80;
+				gfGroup.y -= 88;
+				
+				gfGroup.scrollFactor.set(0.9, 0.9);
+				boyfriendGroup.scrollFactor.set(0.9, 0.9);
+				dadGroup.scrollFactor.set(0.9, 0.9);
+
+			case 'favela':
+				boyfriendGroup.y -= 80;
+				boyfriendGroup.x += 42;
+
+				dadGroup.x -= 180;
+				dadGroup.y -= 35;
+
+				gfGroup.y -= 15;
+				gfGroup.x -= 20;
+
+				gfGroup.scrollFactor.set(0.9, 0.9);
+				boyfriendGroup.scrollFactor.set(0.9, 0.9);
+				dadGroup.scrollFactor.set(0.9, 0.9);
+
+			case 'faveladia':
+				boyfriendGroup.y -= 80;
+				boyfriendGroup.x += 42;
+
+				dadGroup.x -= 180;
+				dadGroup.y -= 35;
+
+				gfGroup.y -= 15;
+				gfGroup.x -= 20;
+
+				gfGroup.scrollFactor.set(0.9, 0.9);
+				boyfriendGroup.scrollFactor.set(0.9, 0.9);
+				dadGroup.scrollFactor.set(0.9, 0.9);
+
+			case 'favelanoite':
+				boyfriendGroup.y -= 80;
+				boyfriendGroup.x += 42;
+
+				dadGroup.x -= 180;
+				dadGroup.y -= 35;
+
+				gfGroup.y -= 15;
+				gfGroup.x -= 20;
+
+				gfGroup.scrollFactor.set(0.9, 0.9);
+				boyfriendGroup.scrollFactor.set(0.9, 0.9);
+				dadGroup.scrollFactor.set(0.9, 0.9);
+
+			case 'floresta':
+				boyfriendGroup.x += 390;
+				dadGroup.x -= 440;
+				gfGroup.y -= 250;
+				gfGroup.x -= 100;
+				
+				gfGroup.scale.set(0.8, 0.8);
+				gfGroup.scrollFactor.set(0.85, 0.85);
+				boyfriendGroup.scrollFactor.set(0.9, 0.9);
+				dadGroup.scrollFactor.set(0.9, 0.9);
 		}
 
-		add(gf);
+		add(gfGroup);
 
 		// Shitty layering but whatev it works LOL
 		if (curStage == 'limo')
 			add(limo);
+			
+		if (curStage == 'baladamedovirus') {
+		add(barbaravirus);
+		}
 
-		add(dad);
-		add(boyfriend);
+		add(dadGroup);
+		add(boyfriendGroup);
 		
 		if(curStage == 'balada'){
 			add(balight);
+		}
+		
+		if(curStage == 'baladamedovirus') {
+			add(acidscreen);
+		}
+		
+		if(curStage == 'faveladia') {
+			add(favelalight);
+		}
+
+		if(curStage == 'favela') {
+			add(daniel);
+			add(kleitin);
+			add(favelalight);
+			add(favelight);
+		}
+
+		if(curStage == 'favelanoite') {
+			add(daniel);
+			add(kleitin);
+			add(favelalight);
+			//add(pessoas);
+			add(poste);
+		}
+		
+		if(curStage == 'floresta') {
+			add(treefront);
+			add(florestalight);
 		}
 		
 		if (loadRep)
@@ -725,13 +1070,15 @@ class PlayState extends MusicBeatState
 				add(songName);
 				songName.cameras = [camHUD];
 			}
-
-		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('healthBar'));
-		if (FlxG.save.data.downscroll)
-			healthBarBG.y = 50;
+		
+		healthBarBG = new AttachedSprite('healthBar');
+		healthBarBG.y = FlxG.height * 0.89;
 		healthBarBG.screenCenter(X);
 		healthBarBG.scrollFactor.set();
-		add(healthBarBG);
+		healthBarBG.xAdd = -4;
+		healthBarBG.yAdd = -4;
+		
+		if(FlxG.save.data.downscroll) healthBarBG.y = 0.11 * FlxG.height;
 
 		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
 			'health', 0, 2);
@@ -739,6 +1086,16 @@ class PlayState extends MusicBeatState
 		// healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
 		// healthBar
 		add(healthBar);
+		
+		healthBarOV = new AttachedSprite('healthBarOV');
+		healthBarOV.y = FlxG.height * 0.89;
+		healthBarOV.screenCenter(X);
+		healthBarOV.scrollFactor.set();
+		healthBarOV.xAdd = -4;
+		healthBarOV.yAdd = -4;
+		add(healthBarOV);
+		
+		if(FlxG.save.data.downscroll) healthBarOV.y = 0.11 * FlxG.height;
 
 		// Add Kade Engine watermark
 		kadeEngineWatermark = new FlxText(4,healthBarBG.y + 50,0,SONG.song + " " + (storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + (Main.watermarks ? " - KE " + MainMenuState.kadeEngineVer : ""), 16);
@@ -787,6 +1144,7 @@ class PlayState extends MusicBeatState
 		notes.cameras = [camHUD];
 		healthBar.cameras = [camHUD];
 		healthBarBG.cameras = [camHUD];
+		healthBarOV.cameras = [camHUD];
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
@@ -1553,6 +1911,7 @@ class PlayState extends MusicBeatState
 			if (luaModchart.getVar("showOnlyStrums",'bool'))
 			{
 				healthBarBG.visible = false;
+				healthBarOV.visible = false;
 				kadeEngineWatermark.visible = false;
 				healthBar.visible = false;
 				iconP1.visible = false;
@@ -1562,6 +1921,7 @@ class PlayState extends MusicBeatState
 			else
 			{
 				healthBarBG.visible = true;
+				healthBarOV.visible = true;
 				kadeEngineWatermark.visible = true;
 				healthBar.visible = true;
 				iconP1.visible = true;
@@ -1665,31 +2025,35 @@ class PlayState extends MusicBeatState
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
 		// FlxG.watch.addQuick('VOLRight', vocals.amplitudeRight);
 
-		iconP1.setGraphicSize(Std.int(FlxMath.lerp(150, iconP1.width, 0.50)));
-		iconP2.setGraphicSize(Std.int(FlxMath.lerp(150, iconP2.width, 0.50)));
-
+		var mult:Float = FlxMath.lerp(1, iconP1.scale.x, CoolUtil.boundTo(1 - (elapsed * 9), 0, 1));
+		iconP1.scale.set(mult, mult);
 		iconP1.updateHitbox();
+
+		var mult:Float = FlxMath.lerp(1, iconP2.scale.x, CoolUtil.boundTo(1 - (elapsed * 9), 0, 1));
+		iconP2.scale.set(mult, mult);
 		iconP2.updateHitbox();
 
 		var iconOffset:Int = 26;
 
-		iconP1.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01) - iconOffset);
-		iconP2.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01)) - (iconP2.width - iconOffset);
+		iconP1.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01)) + (150 * iconP1.scale.x - 150) / 2 - iconOffset;
+		iconP2.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01)) - (150 * iconP2.scale.x) / 2 - iconOffset * 2;
 
 		if (health > 2)
 			health = 2;
+		
 		if (healthBar.percent < 20)
 			iconP1.animation.curAnim.curFrame = 1;
+		else if (healthBar.percent > 80)
+			iconP1.animation.curAnim.curFrame = 2;
 		else
 			iconP1.animation.curAnim.curFrame = 0;
 
 		if (healthBar.percent > 80)
 			iconP2.animation.curAnim.curFrame = 1;
+		else if (healthBar.percent < 20)
+			iconP2.animation.curAnim.curFrame = 2;
 		else
 			iconP2.animation.curAnim.curFrame = 0;
-
-		/* if (FlxG.keys.justPressed.NINE)
-			FlxG.switchState(new Charting()); */
 
 		#if debug
 		if (FlxG.keys.justPressed.EIGHT)
@@ -3155,6 +3519,1595 @@ class PlayState extends MusicBeatState
 		{
 			resyncVocals();
 		}
+		
+		//essa merda de step hit 
+
+		//COISA DA MUSICA
+
+		if (curStep == 1)
+			{
+				FlxTween.tween(songinfo, {x: 0}, 2.6, {ease: FlxEase.expoOut});
+			}
+		
+		if (curStep == 32)
+			{
+				FlxTween.tween(songinfo, {x: -500}, 2.6, {
+					ease: FlxEase.expoIn,
+					onComplete: function(twn:FlxTween)
+					{
+						songinfo.alpha = 0;
+					}
+				});
+			}
+
+			
+
+		/*
+		if (curSong == 'Tutorial') //não funciona P A I N
+			{
+				if (curStep >= 608 && difficulty == 0)
+					{
+					vocals.volume = 0;
+					}
+
+			}
+			*/
+
+		//SALSICHA
+
+		if (curSong == 'Earthquake') //zoom na partezinha legal da música uwu
+			{
+					
+					//transformasao
+					 //VAI
+					if (curStep == 1248)
+						{
+							FlxG.sound.play(Paths.sound('salsicha1'));
+						}
+
+					 //VOLTA
+					if (curStep == 2064)
+						{
+							FlxG.sound.play(Paths.sound('salsicha2'));
+						}
+
+
+					//FLASH
+						//VAI
+						if (curStep == 1296)
+						{
+							FlxG.camera.flash(FlxColor.WHITE, 2);
+						}
+
+						//VOLTA
+						if (curStep == 2096)
+							{
+								FlxG.camera.flash(FlxColor.WHITE, 2);
+							}
+					
+					//FIM DOS FRLASH
+				
+				//vai
+				if (curStep == 1840)
+					{
+						defaultCamZoom = 0.54;
+					}
+				//volta
+				if (curStep == 2088)
+					{
+						defaultCamZoom = 0.58;
+					}
+
+				if (curStep == 2092)
+					{
+						defaultCamZoom = 0.62;
+					}
+
+				if (curStep == 2096)
+					{
+						defaultCamZoom = 0.48;
+					}
+
+					
+			}
+
+		//FRESHER
+		if (curSong == 'Fresher') 
+			{
+				if (curStep == 428)
+				{
+					defaultCamZoom = 0.65;
+	
+					
+					
+	
+				}
+				
+				if (curStep == 432)
+				{
+					defaultCamZoom = 0.70;
+	
+					
+					
+	
+				}
+	
+				if (curStep == 448)
+				{
+					
+					defaultCamZoom = 0.57;
+				}
+
+				if (curStep == 704)
+					{
+						
+						defaultCamZoom = 0.70;
+					}
+
+					if (curStep == 892)
+						{
+							
+							defaultCamZoom = 0.57;
+						}
+
+
+	
+			}
+			if (curSong == 'Reboop') 
+			{
+			//hey
+				/*
+					//Descartado, mas vou deixar aqui mesmo assim caso alguém encontre
+					//COLOQUEI NA PSYCH ENGINE UOOOOOOO
+	
+						if (curStep == 128)
+							{
+							boyfriend.playAnim('hey', true);
+							}	
+						if (curStep == 256)
+							{
+							boyfriend.playAnim('hey', true);
+							}	
+						if (curStep == 324)
+							{
+							boyfriend.playAnim('hey', true);
+							}
+						if (curStep == 388)
+							{
+							boyfriend.playAnim('hey', true);
+							}
+						if (curStep == 512)
+							{
+							boyfriend.playAnim('hey', true);
+							}
+						if (curStep == 640)
+							{
+							boyfriend.playAnim('hey', true);
+							}
+						if (curStep == 772)
+							{
+							boyfriend.playAnim('hey', true);
+							}
+						if (curStep == 896)
+							{
+							boyfriend.playAnim('hey', true);
+							gf.playAnim('cheer', true);
+							}
+					*/
+	
+			//zoom
+							if (curStep == 128)
+							{
+							defaultCamZoom = 0.6;
+							}
+							//z1
+							if (curStep == 184)
+							{
+							defaultCamZoom = 0.65;
+							}
+							//z2
+							if (curStep == 186)
+							{
+							defaultCamZoom = 0.7;
+							}
+							//z3
+							if (curStep == 190)
+							{
+							defaultCamZoom = 0.75;
+							}
+							//volta1
+							if (curStep == 192)
+							{
+							defaultCamZoom = 0.6;
+							}
+							//z1 
+							if (curStep == 248)
+							{
+							defaultCamZoom = 0.65;
+							}
+							//z2
+							if (curStep == 250)
+							{
+							defaultCamZoom = 0.7;
+							}
+							//z3
+							if (curStep == 254)
+							{
+							defaultCamZoom = 0.75;
+							}
+							//volta2
+							if (curStep == 256)
+							{
+							defaultCamZoom = 0.6;
+							}
+							
+							if (curStep == 568)
+							{
+							defaultCamZoom = 0.65;
+							}
+	
+							if (curStep == 570)
+							{
+							defaultCamZoom = 0.7;
+							}
+	
+							if (curStep == 573)
+							{
+							defaultCamZoom = 0.75;
+							}
+	
+							if (curStep == 576)
+							{
+							defaultCamZoom = 0.6;
+							}
+	
+							if (curStep == 632)
+							{
+							defaultCamZoom = 0.65;
+							}
+	
+							if (curStep == 633)
+							{
+							defaultCamZoom = 0.7;
+							}
+	
+							if (curStep == 637)
+							{
+							defaultCamZoom = 0.75;
+							}
+	
+							if (curStep == 640)
+							{
+							defaultCamZoom = 0.6;
+							}
+	
+			}
+			if (curSong == 'Fresher') //de novo porra? vsf 
+			{
+				if (curStep == 704)
+					{
+					defaultCamZoom = 0.65;
+					}
+
+
+				if (curStep == 832)
+					{
+					defaultCamZoom = 0.57;
+					}
+			}
+			if (curSong == 'Rap-King') 
+			{
+	
+						//FINAL ANIMATION LOOOL
+					if (health >= 1)
+						{
+							if (curBeat == 728)
+								{
+	
+									angryDad = true;
+	
+								}
+	
+							if (curStep == 2914)
+								{
+			
+									FlxG.sound.play(Paths.sound('micthrow'));
+			
+								}
+	
+							if (curBeat == 729)
+								{
+			
+									angryDad = false;
+									
+			
+								}
+								if (curBeat > 729)
+									{
+				
+										dad.playAnim('micend');
+				
+									}
+						}
+				//animation test
+					//
+			//zoom
+				//inicio 
+	
+					
+	
+							if (curStep == 32)
+							{
+							defaultCamZoom = 0.6;
+							
+							}
+	
+							if (curStep == 48)
+							{
+							defaultCamZoom = 0.62;
+							
+							}
+	
+							if (curStep == 64)
+							{
+							defaultCamZoom = 0.57;
+							}
+	
+							if (curStep == 96)
+							{
+							defaultCamZoom = 0.6;
+							}
+	
+							if (curStep == 112)
+							{
+							defaultCamZoom = 0.62;
+							}
+	
+							if (curStep == 128)
+							{
+							
+							defaultCamZoom = 0.57;
+							}
+	
+					//Voz começa aqui uwu
+	
+							if (curStep == 640)
+							{
+							defaultCamZoom = 0.57;
+							}
+	
+							if (curStep == 672)
+							{
+							defaultCamZoom = 0.6;
+							}
+	
+							if (curStep == 688)
+							{
+							defaultCamZoom = 0.63;
+							}
+	
+							if (curStep == 688)
+							{
+							defaultCamZoom = 0.64;
+							}
+	
+							if (curStep == 692)
+							{
+							
+							defaultCamZoom = 0.65;
+							}
+	
+							if (curStep == 698)
+							{
+							defaultCamZoom = 0.7;
+							}
+	
+							if (curStep == 700)
+							{
+							defaultCamZoom = 0.75;
+							}
+	
+							if (curStep == 704)
+							{
+						
+							defaultCamZoom = 0.7;
+							}
+				//parte meio 1
+							if (curStep == 960)
+							{
+							FlxG.camera.flash(FlxColor.WHITE, 1.5);
+							BaladaIsDark = true;
+							defaultCamZoom = 0.57;
+							}
+	
+							if (curStep == 1088)
+							{
+							defaultCamZoom = 0.58;
+							}
+	
+							if (curStep == 1104)
+							{
+							defaultCamZoom = 0.62;
+							}
+	
+							if (curStep == 1120)
+							{
+							defaultCamZoom = 0.66;
+							}
+	
+							if (curStep == 1136)
+							{
+							defaultCamZoom = 0.60;
+							}
+	
+							if (curStep == 1144)
+							{
+							defaultCamZoom = 0.57;
+							}
+	
+							if (curStep == 1152)
+							{
+							defaultCamZoom = 0.59;
+							}
+	
+							if (curStep == 1168)
+							{
+							defaultCamZoom = 0.62;
+							}
+	
+							if (curStep == 1184)
+							{
+							defaultCamZoom = 0.65;
+							}
+	
+							if (curStep == 1200)
+							{
+							defaultCamZoom = 0.7;
+							}
+	
+							if (curStep == 1204)
+							{
+							defaultCamZoom = 0.6;
+							}
+	
+							if (curStep == 1208)
+							{
+							defaultCamZoom = 0.8;
+							}
+	
+							if (curStep == 1212)
+							{
+							defaultCamZoom = 0.57;
+							}
+	
+							if (curStep == 1216)
+							{
+							FlxG.camera.flash(FlxColor.WHITE, 1.5);
+							BaladaIsDark = false;
+							defaultCamZoom = 0.65;
+							}
+	
+							if (curStep == 1344)
+							{
+							defaultCamZoom = 0.68;
+							}
+	
+							if (curStep == 1408)
+							{
+							defaultCamZoom = 0.72;
+							}
+	
+							if (curStep == 1464)
+							{
+							defaultCamZoom = 0.78;
+							}
+	
+							if (curStep == 1472)
+							{
+							FlxG.camera.flash(FlxColor.BLACK, 1.5);
+							BaladaIsDark = true;
+							defaultCamZoom = 0.57;
+							}
+	
+							if (curStep == 1600)
+							{
+							defaultCamZoom = 0.6;
+							}
+	
+							if (curStep == 1728)
+							{
+							FlxG.camera.flash(FlxColor.WHITE, 1.5);
+							BaladaIsDark = false;
+							defaultCamZoom = 0.57;
+							}
+	
+							if (curStep == 1856)
+							{
+							defaultCamZoom = 0.6;
+							}
+	
+							if (curStep == 1968)
+							{
+							defaultCamZoom = 0.65;
+							}
+	
+							if (curStep == 1976)
+							{
+							defaultCamZoom = 0.7;
+							}
+	
+							if (curStep == 1980)
+							{
+							defaultCamZoom = 0.75;
+							}
+	
+							if (curStep == 1984)
+							{
+							FlxG.camera.flash(FlxColor.WHITE, 1.5);
+							BaladaIsDark = true;
+							defaultCamZoom = 0.6;
+							}
+	
+					//pitch mudou slk
+	
+							if (curStep == 2112)
+							{
+							FlxG.camera.flash(FlxColor.WHITE, 1.5);
+							BaladaIsDark = false;
+							defaultCamZoom = 0.57;
+							}
+	
+							if (curStep == 2128)
+							{
+							defaultCamZoom = 0.6;
+							}
+	
+							if (curStep == 2144)
+							{
+							defaultCamZoom = 0.57;
+							}
+	
+							if (curStep == 2160)
+							{
+							defaultCamZoom = 0.6;
+							}
+	
+							if (curStep == 2176)
+							{
+							defaultCamZoom = 0.57;
+							}
+	
+							if (curStep == 2192)
+							{
+							defaultCamZoom = 0.6;
+							}
+	
+							if (curStep == 2208)
+							{
+							defaultCamZoom = 0.57;
+							}
+	
+							if (curStep == 2224)
+							{
+							defaultCamZoom = 0.6;
+							}
+	
+					//ah shit here we go again
+							if (curStep == 2240)
+							{
+							defaultCamZoom = 0.57;
+							}
+	
+							if (curStep == 2256)
+							{
+							defaultCamZoom = 0.6;
+							}
+	
+							if (curStep == 2272)
+							{
+							defaultCamZoom = 0.57;
+							}
+	
+							if (curStep == 2288)
+							{
+							defaultCamZoom = 0.6;
+							}
+	
+							if (curStep == 2304)
+							{
+							defaultCamZoom = 0.57;
+							}
+	
+							if (curStep == 2320)
+							{
+							defaultCamZoom = 0.6;
+							}
+	
+							if (curStep == 2336)
+							{
+							defaultCamZoom = 0.57;
+							}
+	
+							if (curStep == 2352)
+							{
+							defaultCamZoom = 0.6;
+							}
+	
+					//acabou graças a deus
+	
+							if (curStep == 2368)
+							{
+							
+							defaultCamZoom = 0.57;
+							}
+			}
+			if (curSong == 'Bittersweet') 
+			{	
+	
+				if (curStep == 256)
+					{
+						FlxTween.tween(dancef, {alpha:1}, 2.4, {ease: FlxEase.expoOut});
+					
+					}
+				
+							if (curStep == 668)
+							{
+							defaultCamZoom = 0.75;
+							
+							}
+	
+							if (curStep == 672)
+							{
+							defaultCamZoom = 0.63;
+							}
+	
+							if (curStep == 732)
+							{
+							defaultCamZoom = 0.75;
+							
+							}
+	
+							if (curStep == 736)
+							{
+							defaultCamZoom = 0.63;
+							}
+	
+						//zooms e gf mexendo 
+	
+							if (curStep == 1)
+							{
+							defaultCamZoom = 0.7;
+							
+							}
+	
+							if (curStep == 256)
+							{
+							defaultCamZoom = 0.63;
+							spookersvel = 1;
+							
+							}
+	
+								if (curStep == 1024)
+									{
+										spookersvel = 2;
+									
+									}
+
+								if (curStep == 1040)
+									{
+										spookersvel = 1;
+									
+									}
+
+							if (curStep == 1056)
+							{
+							defaultCamZoom = 0.7;
+							spookersvel = 2;
+							
+							
+							}
+	
+							if (curStep == 1296)
+							{
+							defaultCamZoom = 0.8;
+							spookersvel = 1;
+							
+							}
+	
+							if (curStep == 1300)
+							{
+							defaultCamZoom = 0.7;
+							
+							}
+	
+							if (curStep == 1304)
+							{
+							defaultCamZoom = 0.8;
+							
+							}
+	
+							if (curStep == 1308)
+							{
+							defaultCamZoom = 0.7;
+							
+							}
+	
+							if (curStep == 1312)
+							{
+							defaultCamZoom = 0.63;
+							
+							
+							}
+	
+							if (curStep == 2080)
+							{
+							defaultCamZoom = 0.66;
+							
+							}
+	
+							if (curStep == 2084)
+							{
+							defaultCamZoom = 0.7;
+							
+							}
+
+							if (curStep == 336)
+								{
+								spookersvel = 2;
+								
+								}
+						
+	
+			}
+			if (curSong == 'Nightfall') 
+				{	
+					//começo 1 
+
+					if (curStep == 1)
+						{
+							FlxTween.tween(dancef, {alpha:1}, 2.4, {ease: FlxEase.expoOut});
+						
+						}
+
+					if (curStep == 640)
+						{
+						defaultCamZoom = 0.60;
+						spookersvel = 1;
+						dancefvel = 3;
+						
+						}
+
+					if (curStep == 880)
+						{
+						defaultCamZoom = 0.65;
+						dancefvel = 2;
+						}
+					if (curStep == 888)
+						{
+						defaultCamZoom = 0.70;
+
+						}
+
+					if (curStep == 896)
+						{
+						defaultCamZoom = 0.75;
+						dancefvel = 1;
+
+						}
+					//cabo 1 (lento)
+					if (curStep == 1152)
+						{
+						defaultCamZoom = 0.56;
+						spookersvel = 2;
+						dancefvel = 2;
+						
+						}
+
+					//começo 2
+					if (curStep == 1664)
+						{
+						defaultCamZoom = 0.65;
+						spookersvel = 1;
+						dancefvel = 3;
+						
+						}
+
+					if (curStep == 1920)
+						{
+						defaultCamZoom = 0.75;
+						dancefvel = 1;
+						
+						
+						}
+
+					if (curStep == 2176)
+						{
+						defaultCamZoom = 0.65;
+						dancefvel = 2;
+						
+						}
+
+					if (curStep == 2432)
+						{
+						defaultCamZoom = 0.75;
+						dancefvel = 1;
+						
+						
+						}
+
+					if (curStep == 2688)
+						{
+						defaultCamZoom = 0.56;
+						spookersvel = 2;
+						dancefvel = 3;
+						
+						//falouu
+						FlxTween.tween(dancef, {alpha:0}, 3.4, {ease: FlxEase.expoIn});
+
+						}
+
+
+				}
+			if (curSong == 'Virus') 
+				{	
+
+					if (curStep == 512)
+						{
+							defaultCamZoom = 0.65;
+						}
+	
+					if (curStep == 576)
+						{
+							defaultCamZoom = 0.7;
+						}
+	
+					if (curStep == 624)
+						{
+							defaultCamZoom = 0.75;
+						}
+	
+					if (curStep == 512)
+						{
+							defaultCamZoom = 0.65;
+						}
+	
+					if (curStep == 704)
+						{
+							defaultCamZoom = 0.7;
+						}
+				
+					if (curStep == 752)
+						{
+							defaultCamZoom = 0.75;
+						}
+						//metade
+					if (curStep == 768)
+						{
+							defaultCamZoom = 0.63;
+						}
+	
+					if (curStep == 1024)
+						{
+							defaultCamZoom = 0.7;
+						}
+	
+					if (curStep == 1152)
+						{
+							defaultCamZoom = 0.65;
+						}
+	
+					if (curStep == 1392)
+						{
+							defaultCamZoom = 0.7;
+						}
+	
+					if (curStep == 1408)
+						{
+							defaultCamZoom = 0.65;
+						}
+	
+					if (curStep == 1520)
+						{
+							defaultCamZoom = 0.7;
+						}
+	
+					if (curStep == 1536)
+						{
+							defaultCamZoom = 0.63;
+						}
+					//final
+	
+					if (curStep == 1552)
+						{
+							defaultCamZoom = 0.68;
+						}
+							
+				
+					if (curStep == 1556)
+					{
+						defaultCamZoom = 0.72;
+					}
+					
+					
+				}
+
+				if (curSong == 'Shacklesz')
+					{
+						
+						if (curStep == 128)
+							{
+								defaultCamZoom = 0.85;
+							}
+
+						if (curStep == 384)
+							{
+								defaultCamZoom = 0.8;
+							}
+
+						if (curStep == 636)
+							{
+								defaultCamZoom = 0.7;
+							}
+
+							if (curStep == 640)
+								{
+									defaultCamZoom = 0.75;
+								}
+						
+						if (curStep == 896)
+							{
+								defaultCamZoom = 0.8;
+							}
+
+
+							if (curStep == 1018)
+								{
+									defaultCamZoom = 0.85;
+								}
+
+								if (curStep == 1024)
+									{
+										defaultCamZoom = 0.8;
+									}
+
+						if (curStep > 1135 && curStep < 1150)
+							{
+								defaultCamZoom -= 0.005;
+							}
+
+							if (curStep == 1400)
+								{
+									defaultCamZoom = 0.82;
+								}
+
+								if (curStep == 1404)
+									{
+										defaultCamZoom = 0.78;
+									}
+						//fin LOL
+						if (curStep == 1408)
+							{
+								defaultCamZoom = 0.75;
+							}
+
+							if (curStep == 1476)
+								{
+									defaultCamZoom = 0.8;
+								}
+								if (curStep == 1536)
+									{
+										defaultCamZoom = 0.75;
+									}
+
+						//zooms sus
+						if (curStep == 832)
+							{
+								defaultCamZoom = 0.8;
+							}
+
+							if (curStep == 898)
+								{
+									defaultCamZoom = 0.7;
+								}
+
+							if (curStep == 928)
+								{
+									defaultCamZoom = 0.85;
+								}
+								if (curStep == 960)
+									{
+										defaultCamZoom = 0.8;
+									}
+							if (curStep == 992)
+								{
+									defaultCamZoom = 0.85;
+								}
+								if (curStep == 1050)
+									{
+										defaultCamZoom = 0.88;
+									}
+
+								if (curStep == 1050)
+									{
+										defaultCamZoom = 0.85;
+									}
+
+									if (curStep == 1082)
+										{
+											defaultCamZoom = 0.9;
+										}
+										if (curStep == 1088)
+											{
+												defaultCamZoom = 0.8;
+											}
+
+								//sus
+								if (curStep == 1272)
+									{
+										defaultCamZoom = 0.78;
+									}
+									if (curStep == 1280)
+										{
+											defaultCamZoom = 0.85;
+										}
+						//fim dos suus
+						}
+
+					if (curStage == 'favela' || curStage == 'favelanoite')
+						{
+							if (kleistate == 1) 
+								{
+		
+									kleitin.animation.play('walk', false);
+									
+								}
+						}
+			if (curSong == 'Blam')
+				{
+					// aud
+
+					if (curStep == 2488)
+						{
+							FlxG.sound.play(Paths.sound('oops'));
+						
+						}
+
+						if (curStep == 2492)
+							{
+								FlxG.sound.play(Paths.sound('oops'));
+							
+							}
+
+					//KLEITIN EVENT wip
+
+					if (curStep == 16) //fiz isso pra saporra nao trava na hora das notinha //(spoiler: NÃO FUNCIONOU)
+						{
+							kleistate = 1;
+							FlxTween.tween(kleitin, {x: 2600}, 3.8, {ease: FlxEase.quartOut});
+						
+						}
+
+					if (curStep == 752) //752
+						{
+							
+							FlxTween.tween(kleitin, {x: 1080}, 3.8, {
+								startDelay: 0.1,
+								ease: FlxEase.linear,
+								onComplete: function(twn:FlxTween)
+								{
+			
+									kleitin.animation.play('stop', true);
+									kleistate = 2;
+								
+								}
+							});
+
+						}
+
+						if (curStep == 1904) //sentou
+							{
+								defaultCamZoom = 0.82;
+								kleistate = 3;
+							}
+
+					//DANIEL EVENT
+					if (curStep == 1016) //1116
+						{
+							FlxTween.tween(carrofoda, {x:-600}, 2, {ease: FlxEase.quartOut});
+						}
+
+					if (curStep == 1116) //1116
+						{
+							FlxTween.tween(danielzinho, {x:-1020}, 8, {ease: FlxEase.linear});
+						}
+
+
+						//nasceu
+						if (curStep == 1424) //1232
+							{
+								FlxTween.tween(daniel, {x:-540}, 1.4, {ease: FlxEase.sineOut});
+							}
+
+					//fim do daniel event pq eu quero
+					//BUSAO
+					if (curStep == 1865) 
+						{
+							busao.y = -45;
+							FlxTween.tween(busao, {x:230}, 6, {ease: FlxEase.quartOut}); //BUSAO EVENT
+							FlxTween.tween(busao, {y:-40}, 6, {ease: FlxEase.bounceInOut});
+						}
+					//ok
+					//nao funciona por motivos de (num sei porra)
+					if (curStep == 16)
+						{
+							defaultCamZoom = 0.7;
+						}
+						if (curStep == 32)
+							{
+								defaultCamZoom = 0.72;
+							}
+							if (curStep == 48)
+								{
+									defaultCamZoom = 0.74;
+								}
+								if (curStep == 64)
+									{
+										defaultCamZoom = 0.76;
+									}
+									if (curStep == 80)
+										{
+											defaultCamZoom = 0.78;
+										}
+										if (curStep == 96)
+											{
+												defaultCamZoom = 0.8;
+											}
+											if (curStep == 112)
+												{
+													defaultCamZoom = 0.82;
+												}
+												if (curStep == 116)
+													{
+														defaultCamZoom = 0.84;
+													}
+													if (curStep == 120)
+														{
+															defaultCamZoom = 0.86;
+														}
+														if (curStep == 124)
+															{
+																defaultCamZoom = 0.88;
+															}
+						//zoofim
+						
+					if (curStep == 128)
+						{
+							defaultCamZoom = 0.7;
+						}
+
+						if (curStep == 386)
+							{
+								defaultCamZoom = 0.75;
+							}
+
+							if (curStep == 512)
+								{
+									defaultCamZoom = 0.8;
+								}
+								if (curStep == 624)
+									{
+										defaultCamZoom = 0.85;
+									}
+									if (curStep == 628)
+										{
+											defaultCamZoom = 0.9;
+										}
+										if (curStep == 632)
+											{
+												defaultCamZoom = 0.95;
+											}
+											if (curStep == 636)
+												{
+													defaultCamZoom = 1;
+												}
+												
+				//TIRO
+				if (curStep == 640)
+					{
+						defaultCamZoom = 0.7;
+					}
+					//ativa a barbara com medinho de bala uiui 
+					if (curStep == 656)
+						{
+							gfmedo = true;
+						}
+				//continua
+				if (curStep == 766)
+					{
+						defaultCamZoom = 0.75;
+					}
+					if (curStep == 768)
+						{
+							defaultCamZoom = 0.8;
+						}
+
+				if (curStep == 1024)
+					{
+						defaultCamZoom = 0.7;
+					}
+
+				if (curStep == 1152)
+					{
+						defaultCamZoom = 0.75;
+					}
+
+				if (curStep == 1280)
+					{
+						defaultCamZoom = 0.8;
+					}
+				//z
+				if (curStep == 1380)
+					{
+						defaultCamZoom = 0.9;
+					}
+					if (curStep == 1382)
+						{
+							defaultCamZoom = 0.8;
+						}
+				
+				if (curStep == 1396)
+					{
+						defaultCamZoom = 0.9;
+					}
+					if (curStep == 1398)
+						{
+							defaultCamZoom = 0.8;
+						}
+
+				
+				if (curStep == 1506)
+					{
+						defaultCamZoom = 0.9;
+					}
+					if (curStep == 1510)
+						{
+							defaultCamZoom = 0.8;
+						}
+				
+				if (curStep == 1522)
+					{
+						defaultCamZoom = 0.9;
+					}
+					if (curStep == 1526)
+						{
+							defaultCamZoom = 0.8;
+						}
+						if (curStep == 1536)
+							{
+								defaultCamZoom = 0.75;
+							}
+				if (curStep == 1664)
+					{
+						defaultCamZoom = 0.7;
+					}
+					if (curStep == 1712)
+						{
+							defaultCamZoom = 0.75;
+						}
+						if (curStep == 1728)
+							{
+								defaultCamZoom = 0.7;
+							}
+				if (curStep == 1776)
+					{
+						defaultCamZoom = 0.8;
+					}
+					if (curStep == 1792)
+						{
+							defaultCamZoom = 0.7;
+						}
+						if (curStep == 1824)
+							{
+								defaultCamZoom = 0.75;
+							}
+							if (curStep == 1856)
+								{
+									defaultCamZoom = 0.7;
+								}
+				if (curStep == 1920)
+					{
+						defaultCamZoom = 0.8;
+					}
+					if (curStep >= 2008 && curStep < 2016)
+						{
+							defaultCamZoom -= 0.002;
+						}
+				if (curStep == 2016)
+					{
+						defaultCamZoom = 0.7;
+					}
+					if (curStep == 2048)
+						{
+							defaultCamZoom = 0.75;
+						}
+						if (curStep == 2176)
+							{
+								defaultCamZoom = 0.8;
+							}
+							if (curStep == 2304)
+								{
+									defaultCamZoom = 0.85;
+								}
+
+				if (curStep == 2432)
+					{
+						defaultCamZoom = 0.75;
+					}
+					if (curStep == 2486)
+						{
+							defaultCamZoom = 0.85;
+						}
+						if (curStep == 2496)
+							{
+								defaultCamZoom = 0.75;
+							}
+							if (curStep == 2688)
+								{
+									defaultCamZoom = 0.7;
+								}
+				}
+			if (curSong == 'Loaded')
+				{
+					if (curStep == 128)
+						{
+							defaultCamZoom = 0.9;
+						}
+
+							if (curStep == 144)
+								{
+									defaultCamZoom = 0.8;
+								}
+
+						if (curStep == 148)
+							{
+								defaultCamZoom = 0.85;
+							}
+
+								if (curStep == 150)
+									{
+										defaultCamZoom = 0.7;
+									}
+
+							if (curStep == 154)
+								{
+									defaultCamZoom = 0.75;
+								}
+
+								if (curStep == 156)
+									{
+										defaultCamZoom = 0.7;
+									}
+
+						if (curStep == 156)
+							{
+								defaultCamZoom = 0.8;
+							}
+
+						if (curStep == 184)
+							{
+								defaultCamZoom = 0.85;
+							}
+							//dnv
+							if (curStep == 192)
+								{
+									defaultCamZoom = 0.9;
+								}
+		
+									if (curStep == 208)
+										{
+											defaultCamZoom = 0.8;
+										}
+		
+								if (curStep == 212)
+									{
+										defaultCamZoom = 0.85;
+									}
+		
+										if (curStep == 214)
+											{
+												defaultCamZoom = 0.7;
+											}
+		
+									if (curStep == 218)
+										{
+											defaultCamZoom = 0.75;
+										}
+		
+										if (curStep == 220)
+											{
+												defaultCamZoom = 0.7;
+											}
+		
+								if (curStep == 224)
+									{
+										defaultCamZoom = 0.8;
+									}
+		
+								if (curStep == 248)
+									{
+										defaultCamZoom = 0.85;
+									}
+									//fim do inicio (???)
+					if (curStep == 288)
+						{
+							defaultCamZoom = 0.9;
+						}
+						if (curStep == 312)
+							{
+								defaultCamZoom = 0.95;
+							}
+					if (curStep == 320)
+						{
+							defaultCamZoom = 0.9;
+						}
+						if (curStep == 354)
+							{
+								defaultCamZoom = 0.95;
+							}
+							if (curStep == 368)
+								{
+									defaultCamZoom = 0.9;
+								}
+								if (curStep == 374)
+									{
+										defaultCamZoom = 0.95;
+									}
+							if (curStep == 380)
+								{
+									defaultCamZoom = 0.8;
+								}
+						if (curStep == 384)
+							{
+								defaultCamZoom = 0.75;
+							}
+							if (curStep == 512)
+								{
+									defaultCamZoom = 0.77;
+								}
+								if (curStep == 576)
+									{
+										defaultCamZoom = 0.72;
+									}
+					if (curStep == 640)
+						{
+							defaultCamZoom = 0.95;
+						}
+						if (curStep == 696)
+							{
+								defaultCamZoom = 0.9;
+							}
+					if (curStep == 704)
+						{
+							defaultCamZoom = 0.95;
+						}
+						if (curStep == 766)
+							{
+								defaultCamZoom = 0.9;
+							}
+					if (curStep == 768)
+						{
+							defaultCamZoom = 0.95;
+						}
+						if (curStep == 820)
+							{
+								defaultCamZoom = 1;
+							}
+							if (curStep == 824)
+								{
+									defaultCamZoom = 1.05;
+								}
+								if (curStep == 828)
+									{
+										defaultCamZoom = 1.10;
+									}
+					if (curStep == 832)
+						{
+							defaultCamZoom = 0.9;
+						}
+					if (curStep == 864)
+						{
+							defaultCamZoom = 0.95;
+						}
+						if (curStep ==  884)
+							{
+								defaultCamZoom = 1;
+							}
+							if (curStep == 888) 
+								{
+									defaultCamZoom = 1.05;
+								}
+								if (curStep == 892)
+									{
+										defaultCamZoom = 1.10;
+									}
+				if (curStep == 896)
+					{
+						defaultCamZoom = 0.9;
+					}
+					if (curStep == 1024)
+						{
+							defaultCamZoom = 0.95;
+						}
+						if (curStep == 1088)
+							{
+								defaultCamZoom = 1;
+							}
+					if (curStep == 1152)
+						{
+							defaultCamZoom = 0.85;
+						}
+						if (curStep == 1280)
+							{
+								defaultCamZoom = 0.9;
+							}
+							if (curStep == 1344)
+								{
+									defaultCamZoom = 0.95;
+								}
+								if (curStep == 1376)
+									{
+										defaultCamZoom = 1;
+									}
+									if (curStep == 1400)
+										{
+											defaultCamZoom = 1.05;
+										}
+					if (curStep == 1408)
+						{
+							defaultCamZoom = 0.85;
+						}
+						if (curStep == 1568)
+							{
+								defaultCamZoom = 0.95;
+							}
+							if (curStep == 1588)
+								{
+									defaultCamZoom = 0.9;
+								}
+								if (curStep == 1592)
+									{
+										defaultCamZoom = 0.85;
+									}
+									if (curStep == 1596)
+										{
+											defaultCamZoom = 0.8;
+										}
+
+							if (curStep == 1600)
+								{
+									defaultCamZoom = 0.85;
+								}
+						if (curStep == 1632)
+							{
+								defaultCamZoom = 0.95;
+							}
+							if (curStep == 1652)
+								{
+									defaultCamZoom = 0.9;
+								}
+								if (curStep == 1656)
+									{
+										defaultCamZoom = 0.85;
+									}
+									if (curStep == 1660)
+										{
+											defaultCamZoom = 0.8;
+										}
+										if (curStep == 1664)
+											{
+												defaultCamZoom = 0.75;
+											}
+				}
 
 		#if windows
 		if (executeModchart && luaModchart != null)
@@ -3236,11 +5189,17 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.03;
 		}
 
-		iconP1.setGraphicSize(Std.int(iconP1.width + 30));
-		iconP2.setGraphicSize(Std.int(iconP2.width + 30));
-
-		iconP1.updateHitbox();
-		iconP2.updateHitbox();
+		if (curBeat % 1 == 0)
+		{		
+		iconP1.scale.set(0.9, 0.9);
+		iconP2.scale.set(1.1, 1.1);
+		}
+		
+		if (curBeat % 2 == 0)
+		{
+		iconP1.scale.set(1.1, 1.1);
+		iconP2.scale.set(0.9, 0.9);
+		}
 
 		if (curBeat % gfSpeed == 0)
 		{
@@ -3288,6 +5247,139 @@ class PlayState extends MusicBeatState
 						if (FlxG.random.bool(10) && fastCarCanDrive)
 							fastCarDrive();
 				}
+			
+			case 'baladamedo':
+			
+			if (dancefvel == 1) {
+
+				dancef.animation.play('floor' + ((curBeat % 5) + 1));
+
+			}
+			else if (dancefvel == 3){
+
+				dancef.animation.play('floor' + ((Math.floor(curBeat / 4) % 5) + 1));
+					
+			}
+			else {
+
+				dancef.animation.play('floor' + ((Math.floor(curBeat / 2) % 5) + 1));
+					
+			}
+
+
+			if (spookersvel == 1) {
+
+				if (curBeat % 1 == 0)
+					{
+						spookers.dance(true);
+					}
+
+			}
+			else {
+
+				if (curBeat % 2 == 0)
+					{
+						spookers.dance(true);
+					}
+					
+			}
+
+			case 'baladamedovirus':
+			
+				if (dancefvel == 1) {
+
+					dancef.animation.play('floor' + ((curBeat % 5) + 1));
+	
+				}
+				else if (dancefvel == 3){
+	
+					dancef.animation.play('floor' + ((Math.floor(curBeat / 4) % 5) + 1));
+						
+				}
+				else {
+	
+					dancef.animation.play('floor' + ((Math.floor(curBeat / 2) % 5) + 1));
+						
+				}
+	
+	
+				if (spookersvel == 1) {
+	
+					if (curBeat % 1 == 0)
+						{
+							spookers.dance(true);
+						}
+	
+				}
+				else {
+	
+					if (curBeat % 2 == 0)
+						{
+							spookers.dance(true);
+						}
+						
+				}
+
+				if (curBeat % 1 == 0)
+					{
+						barbaravirus.animation.play('danceleft', true);
+					}
+				
+				if (curBeat % 2 == 0)
+					{
+						barbaravirus.animation.play('danceright', true);
+					}
+				
+			case 'favela':
+
+					danielzinho.dance(true);
+					if (kleistate == 2)
+						{
+							if (curBeat % 2 == 0)
+							kleitin.animation.play('idle', true);
+						}
+
+					if (kleistate == 3)
+						{
+							if (curBeat % 2 == 0)
+							kleitin.animation.play('dance', true);
+						}
+
+					if (curBeat % 2 == 0)
+					{
+					daniel.dance(true);
+
+					}
+
+					busao.dance(true);
+			
+
+			case 'favelanoite':
+
+				
+				if (kleistate == 2)
+					{
+						if (curBeat % 2 == 0)
+						kleitin.animation.play('idle', true);
+					}
+
+				if (kleistate == 3)
+					{
+						if (curBeat % 2 == 0)
+						kleitin.animation.play('dance', true);
+					}
+
+					//pessoas.animation.play('dance', true);
+					
+					
+					busao.dance(true);
+
+					if (curBeat % 2 == 0)
+						{
+						daniel.dance(true);
+	
+						}
+			
 			case "philly":
 				if(FlxG.save.data.distractions){
 					if (!trainMoving)

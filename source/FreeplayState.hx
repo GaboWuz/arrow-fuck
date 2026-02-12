@@ -10,6 +10,7 @@ import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
 
+import flixel.addons.display.FlxBackdrop;
 
 #if windows
 import Discord.DiscordClient;
@@ -20,6 +21,8 @@ using StringTools;
 class FreeplayState extends MusicBeatState
 {
 	var songs:Array<SongMetadata> = [];
+	
+	var chess:FlxBackdrop;
 
 	var selector:FlxText;
 	var curSelected:Int = 0;
@@ -34,6 +37,13 @@ class FreeplayState extends MusicBeatState
 	private var curPlaying:Bool = false;
 
 	private var iconArray:Array<HealthIcon> = [];
+	
+	var bg:FlxSprite;
+	var gradient:FlxSprite;
+	var menushit:FlxSprite;
+	var overlay:FlxSprite;
+	var intendedColor:Int;
+	var colorTween:FlxTween;
 
 	override function create()
 	{
@@ -68,15 +78,45 @@ class FreeplayState extends MusicBeatState
 
 		// LOAD CHARACTERS
 
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuBGBlue'));
+		bg = new FlxSprite().loadGraphic(Paths.image('menuBG'));
+		bg.x -= 10;
+		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
+		
+		chess = new FlxBackdrop(Paths.image('mebg'), 0, 0, true, false);
+		chess.y -= 80;
+		add(chess);
+		
+		chess.offset.x -= 0;
+		chess.offset.y += 0;
+		chess.velocity.x = 20;
+		
+		gradient = new FlxSprite().loadGraphic(Paths.image('fpbgradient'));
+		gradient.antialiasing = ClientPrefs.globalAntialiasing;
+		add(gradient);
+
+		menushit = new FlxSprite(0).loadGraphic(Paths.image('fpshit'));
+		menushit.updateHitbox();
+		menushit.x -= 1200;
+		menushit.alpha = 0.9;
+		menushit.screenCenter(Y);
+		menushit.antialiasing = ClientPrefs.globalAntialiasing;
+		add(menushit);
+
+		FlxTween.tween(menushit, {x:-25}, 2.4, {ease: FlxEase.expoOut});
+		
+		overlay = new FlxSprite().loadGraphic(Paths.image('fpov3'));
+		overlay.antialiasing = ClientPrefs.globalAntialiasing;
+		add(overlay);
+		overlay.x += 1200;
+		FlxTween.tween(overlay, {x:0}, 2.4, {ease: FlxEase.expoOut});
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
 		add(grpSongs);
 
 		for (i in 0...songs.length)
 		{
-			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false, true);
+			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
 			songText.isMenuItem = true;
 			songText.targetY = i;
 			grpSongs.add(songText);
@@ -303,11 +343,13 @@ class SongMetadata
 	public var songName:String = "";
 	public var week:Int = 0;
 	public var songCharacter:String = "";
+	// public var color:Int = -7179779;
 
 	public function new(song:String, week:Int, songCharacter:String)
 	{
 		this.songName = song;
 		this.week = week;
 		this.songCharacter = songCharacter;
+		// this.color = color;
 	}
 }
