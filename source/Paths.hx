@@ -71,7 +71,7 @@ class Paths
 	}
 	
 	inline static public function formatToSongPath(path:String) {
-		return path.toLowerCase().replace(' ', '-');
+		return StringTools.replace(path.toLowerCase(), ' ', '-');
 	}
 
 	inline static public function xml(key:String, ?library:String)
@@ -123,7 +123,7 @@ class Paths
 	
 	inline static public function fileExists(key:String, type:AssetType, ?ignoreMods:Bool = false, ?library:String)
 	{
-		if(OpenFlAssets.exists(Paths.getPath(key, type))) {
+		if(OpenFlAssets.exists(Paths.getPath(key, type, null))) {
 			return true;
 		}
 		return false;
