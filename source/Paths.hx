@@ -45,7 +45,7 @@ class Paths
 		return '$library:assets/$library/$file';
 	}
 
-	inline static function getPreloadPath(file:String)
+	inline public static function getPreloadPath(file:String)
 	{
 		return 'assets/$file';
 	}
@@ -115,6 +115,14 @@ class Paths
 	inline static public function font(key:String)
 	{
 		return 'assets/fonts/$key';
+	}
+	
+	inline static public function fileExists(key:String, type:AssetType, ?ignoreMods:Bool = false, ?library:String)
+	{
+		if(OpenFlAssets.exists(Paths.getPath(key, type))) {
+			return true;
+		}
+		return false;
 	}
 
 	inline static public function getSparrowAtlas(key:String, ?library:String)

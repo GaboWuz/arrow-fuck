@@ -168,6 +168,37 @@ class PlayState extends MusicBeatState
 	var currentFrames:Int = 0;
 
 	public var dialogue:Array<String> = ['dad:blah blah blah', 'bf:coolswag'];
+	
+	//COISAS DO ARROW FUNK
+	private var angryDad:Bool = false; //eu só peguei da outra versão, eu nem sei se isso ainda ta sendo usado lmao
+
+	//luz
+	var fundo1:BGSprite;
+	var chao1:BGSprite;
+	var base1:BGSprite;
+	var luzes1:BGSprite;
+	var curti1:BGSprite;
+	//escuro
+	var fundo2:BGSprite;
+	var chao2:BGSprite;
+	var base2:BGSprite;
+	var luzes2:BGSprite;
+	var curti2:BGSprite;
+
+	var balight:BGSprite;
+
+	//interruptor
+	private var BaladaIsDark:Bool = false;
+	
+	//BALADA DO MEDO UUU
+	var spookers:BGSprite;
+	var dancef:BGSprite;
+
+	var barbaravirus:BGSprite;
+
+	var floorcolor:Int = 1;
+	var spookersvel:Int = 2;
+	var dancefvel:Int = 2;
 
 	var halloweenBG:FlxSprite;
 	var isHalloween:Bool = false;
